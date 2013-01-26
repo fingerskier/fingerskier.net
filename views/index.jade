@@ -1,0 +1,42 @@
+extends layout
+
+block body
+  div(ng-controller='AppCtrl')
+    h2 fingerskier.net
+    ul.menu
+      li
+        a(href='cool') cool stuffs
+      li
+        a(href='blog') circumlocutive musings
+      li
+        a(href='stash') code stash
+
+    div {{action}}
+
+    div(ng-switch='action[0]')
+      div(ng-switch-when='cool')
+        h3 cool stuff container
+      div(ng-switch-when='blog')
+        h3 blog container
+      div(ng-switch-when='stash')
+        h3 code stash container
+
+    pre fingerskier v1.0
+
+  script(src='lib/angular/angular.min.js')
+  script(src='lib/angular/angular-bootstrap.min.js')
+  script(src='lib/angular/angular-bootstrap-prettify.min.js')
+  script(src='lib/angular/angular-loader.min.js')
+  script(src='lib/angular/angular-resource.min.js')
+  script(src='lib/angular/angular-sanitize.min.js')
+  script(src='lib/jquery/js/jquery.min.js')
+  script(src='lib/jquery/js/jquery-ui.min.js')
+  script(src='lib/angular-ui/angular-ui.min.js')
+  script(src='lib/angular-ui/angular-ui-ieshiv.min.js')
+  script(src='lib/bootstrap/js/bootstrap.min.js')
+
+  script(src='js/services.js')
+  script(src='js/controllers.js')
+  script(src='js/filters.js')
+  script(src='js/directives.js')
+  script(src='js/app.js')
