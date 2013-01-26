@@ -2,23 +2,22 @@
 
 /* Controllers */
 
-function AppCtrl($http, $scope, $route, $routeParams) {
-  var render = function () {
-    var thisAction = $route.current.action || '';
+function AppCtrl($http, $location, $scope, $route, $routeParams) {
+  $scope.action = [];
 
-    $scope.action = thisAction.split('.') || [];
-  };
-
-  $http({method: 'GET', url: '/api/name'})
-  .success(function(data, status, headers, config) {
-    $scope.name = data.name;
-  })
-  .error(function(data, status, headers, config) {
-    $scope.name = 'Error!'
-  });
+  $scope.activeAction = function(fav) {
+    if ($scope.action[0] == fav) return 'active'
+    else return '';
+  }
 
   $scope.$on('$routeChangeSuccess', function (scope, next, current) {
-    render();
+    var newAction = [];
+
+    if ($routeParams.root) newAction.push($routeParams.root);
+    if ($routeParams.branch) newAction.push($routeParams.branch);
+    if ($routeParams.leaf) newAction.push($routeParams.leaf);
+
+    $scope.action = newAction;
   });
 }
 

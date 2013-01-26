@@ -4,9 +4,9 @@
 angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ui'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/cool', {action: 'cool'})
-    .when('/blog', {action: 'blog'})
-    .when('/stash', {action: 'stash'})
+    .when('/:root')
+    .when('/:root/:branch')
+    .when('/:root/:branch/:leaf')
     .otherwise({redirectTo: '/'});
 
     $locationProvider.html5Mode(true);

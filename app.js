@@ -1,12 +1,13 @@
 var express = require('express'),
   routes = require('./routes'),
-  api = require('./routes/api');
+  api = require('./routes/api'),
+  pg = require('pg');
 
 var app = module.exports = express();
 
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/view');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -27,7 +28,9 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/name', api.name);
+app.get('/api', api.action);
+app.get('/api/:action', api.action);
+app.get('/api/:action/:data', api.action);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
