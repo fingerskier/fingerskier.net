@@ -1,7 +1,8 @@
 var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
-  pg = require('pg');
+  streamer = require('./routes/streamer'),
+  redis = require('redis');
 
 var app = module.exports = express();
 
@@ -26,6 +27,11 @@ app.configure('production', function(){
 // Routes
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
+
+// Server-Sent-Events
+app.get('/stream', streamer.out);
+app.get('/stream/msg', streamer.msg);
+app.get('/stream/:event_name', streamer.in);
 
 // JSON API
 app.get('/api', api.action);

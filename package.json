@@ -5,6 +5,6 @@
   , "dependencies": {
       "express": "*",
       "jade": "*",
-      "pg": "*"
+      "redis": "*"
   }
 }

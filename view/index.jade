@@ -16,6 +16,10 @@ block body
       li(ng-class="activeAction('cv')")
         a(href='cv') C.V.
 
+    {{msgs}}
+
+    {{flarn}}
+
     div(ng-cloak, ng-switch='action[0]')
       div(ng-switch-when='glean')
         include glean

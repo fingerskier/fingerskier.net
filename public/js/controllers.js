@@ -2,13 +2,15 @@
 
 /* Controllers */
 
-function AppCtrl($http, $location, $scope, $route, $routeParams) {
+function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
   $scope.action = [];
+  $scope.flarn = [];
+  $scope.msgs = [];
 
   $scope.activeAction = function(fav) {
     if ($scope.action[0] == fav) return 'active'
     else return '';
-  }
+  };
 
   $scope.$on('$routeChangeSuccess', function (scope, next, current) {
     var newAction = [];
@@ -19,12 +21,19 @@ function AppCtrl($http, $location, $scope, $route, $routeParams) {
 
     $scope.action = newAction;
   });
+
+  Stream.initMsg(function(reply) {
+    $scope.msgs.push(reply);
+  });
+
+  Stream.init(function(reply) {
+    $log.info('from Stream: ');
+    $log.info(reply.data);
+    $scope.flarn.push(reply.data);
+    $scope.$apply();
+  });
 }
 
 function MyCtrl1() {}
-MyCtrl1.$inject = [];
 
-
-function MyCtrl2() {
-}
-MyCtrl2.$inject = [];
+function MyCtrl2() {}
