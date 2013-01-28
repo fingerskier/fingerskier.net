@@ -1,0 +1,42 @@
+ul Creating User IDs
+  li newID = incr global:userID (returns the new value, and is atomic)
+  li set id:{newID}:username user
+  li set id:{newID}:password pass
+  li set username:user:id {newID}
+ul User Relationships
+  ul General
+    li id:{user_ID}:followers => a set of user_IDs (might include the user as one of their own followers)
+    li id:{user_ID}:following => a set of user_IDs
+  ul Adding Followers
+    li sadd id:{other_user_ID}:following {user_ID}
+    li sadd id:{user_ID}:followers {other_user_ID}
+ul User "Posts"
+  li Storage
+    id:{user_ID}:posts => a list, new posts are lpushed
+  li Create Post
+    ul
+      li incr global:postID => returns next post_ID
+      li set post:{post_ID} "{user_ID}timestamp}ost text"
+      li smembers id:{user_ID}:followers => get the list of follower's IDs
+    ul For each follower
+      li lpush id:{user_ID}:posts {post_ID}
+      li push global:posts {post_ID}
+      li ltrim global:posts 0 1000
+ul User Authentication
+  li set id:{user_ID}:auth {client_key}
+  li set auth:{client_key} {user_ID}
+  ul Login
+    li get username:{username}:id
+    li get id:{user_ID}:password => check this against provision
+    li set id:{user_ID}:auth {client_key}
+    li set auth:{client_key} {user_ID}
+  ul Check Login Status (cookie based)
+    li get auth:{client_key} => returns user_ID on success
+    li get id:{user_ID}:auth => returns the client_key, check against cookie value
+  ul Logout
+    li set id:{user_ID}:auth {new_client_key}
+    li del auth:{old_client_key}
+    li set auth:{new_client_key}
+  ul Distributed Queue
+    li tasks are rpush[ed] onto a list
+    li workers blpop tasks (only one worker gets a task)

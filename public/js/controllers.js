@@ -17,7 +17,7 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
   }
 
   $scope.branchURL = function(branch) {
-    return $scope.action[0] + '/' + branch + '/';
+    return $scope.action[0] + '/' + branch;
   }
 
   $scope.leaf = function() {
@@ -25,7 +25,7 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
   }
 
   $scope.leafURL = function(leaf) {
-    return $scope.action[0] + '/' + $scope.action[1] + '/' + leaf + '/';
+    return $scope.action[0] + '/' + $scope.action[1] + '/' + leaf;
   }
 
   $scope.root = function() {

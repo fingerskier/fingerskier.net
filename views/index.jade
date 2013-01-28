@@ -8,13 +8,13 @@ block body
 
     ul.nav.nav-tabs
       li(ng-class="activeAction('glean')")
-        a(ng-href="rootURL('glean')") gleanings
+        a(href='glean') gleanings
       li(ng-class="activeAction('blog')")
-        a(ng-href="rootURL('blog')") circumlocutive musings
+        a(href='blog') circumlocutive musings
       li(ng-class="activeAction('stash')")
-        a(ng-href="rootURL('stash')") code stash
+        a(href='stash') code stash
       li(ng-class="activeAction('cv')")
-        a(ng-href="rootURL('cv')") C.V.
+        a(href='cv') C.V.
 
     ul(ng-cloak, ng-switch='root()')
       li(ng-switch-when='glean')

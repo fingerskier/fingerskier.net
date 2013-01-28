@@ -1,0 +1,15 @@
+h3 code stash container
+
+ul(ng-switch='branch()')
+  li.row-fluid
+    a(ng-href="{{branchURL('cf')}}") ColdFusion
+    div(ng-switch-when='cf')
+      include stash/cf
+  li.row-fluid
+    a(ng-href="{{branchURL('js')}}") Javascript
+    div(ng-switch-when='js')
+      include stash/js
+  li.row-fluid
+    a(ng-href="{{branchURL('redis')}}") Redis
+    div(ng-switch-when='redis')
+      include stash/redis

@@ -1,0 +1,10 @@
+li {
+  list-style-type: none;
+}
+#bottomPanel {
+  position: fixed;
+  bottom: 3px;
+}
+.ng-cloak {
+  display: none;
+}
