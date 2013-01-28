@@ -1,4 +1,6 @@
-/* app css stylesheet */
+li {
+  list-style-type: none;
+}
 
 #bottomPanel {
   position: fixed;

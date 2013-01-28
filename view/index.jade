@@ -16,18 +16,14 @@ block body
       li(ng-class="activeAction('cv')")
         a(href='cv') C.V.
 
-    {{msgs}}
-
-    {{flarn}}
-
-    div(ng-cloak, ng-switch='action[0]')
-      div(ng-switch-when='glean')
+    ul(ng-cloak, ng-switch='root()')
+      li(ng-switch-when='glean')
         include glean
-      div(ng-switch-when='blog')
+      li(ng-switch-when='blog')
         include blog
-      div(ng-switch-when='stash')
+      li(ng-switch-when='stash')
         include stash
-      div(ng-switch-when='cv')
+      li(ng-switch-when='cv')
         include cv
 
     pre#bottomPanel fingerskier v1.0

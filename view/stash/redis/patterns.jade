@@ -1,0 +1,48 @@
+| Patterns
+|   Creating User IDs
+|     newID = incr global:userID (returns the new value, and is atomic)
+|     set id:{newID}:username user
+|     set id:{newID}:password pass
+|     set username:user:id {newID}
+|
+|   User Relationships
+|     General
+|       id:{user_ID}:followers => a set of user_IDs (might include the user as one of their own followers)
+|       id:{user_ID}:following => a set of user_IDs
+|
+|     Adding Followers
+|       sadd id:{other_user_ID}:following {user_ID}
+|       sadd id:{user_ID}:followers {other_user_ID}
+|
+|   User "Posts"
+|     Storage
+|       id:{user_ID}:posts => a list, new posts are lpushed
+|
+|     Create Post
+|       incr global:postID => returns next post_ID
+|       set post:{post_ID} "{user_ID}|{timestamp}|post text"
+|       smembers id:{user_ID}:followers => get the list of follower's IDs
+|       For each follower
+|         lpush id:{user_ID}:posts {post_ID}
+|         push global:posts {post_ID}
+|         ltrim global:posts 0 1000
+|
+|   User Authentication
+|     set id:{user_ID}:auth {client_key}
+|     set auth:{client_key} {user_ID}
+|
+|     Login
+|       get username:{username}:id
+|       get id:{user_ID}:password => check this against provision
+|       set id:{user_ID}:auth {client_key}
+|       set auth:{client_key} {user_ID}
+|
+|     Check Login Status (cookie based)
+|       get auth:{client_key} => returns user_ID on success
+|       get id:{user_ID}:auth => returns the client_key, check against cookie value
+|
+|     Logout
+|       set id:{user_ID}:auth {new_client_key}
+|       del auth:{old_client_key}
+|       set auth:{new_client_key}
+|

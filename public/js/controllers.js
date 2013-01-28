@@ -12,6 +12,26 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
     else return '';
   };
 
+  $scope.branch = function() {
+    return $scope.action[1];
+  }
+
+  $scope.branchURL = function(branch) {
+    return $scope.action[0] + '/' + branch;
+  }
+
+  $scope.leaf = function() {
+    return $scope.action[2];
+  }
+
+  $scope.leafURL = function(leaf) {
+    return $scope.action[0] + '/' + $scope.action[1] + '/' + leaf;
+  }
+
+  $scope.root = function() {
+    return $scope.action[0];
+  }
+
   $scope.$on('$routeChangeSuccess', function (scope, next, current) {
     var newAction = [];
 

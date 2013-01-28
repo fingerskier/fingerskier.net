@@ -1,0 +1,13 @@
+ul(ng-switch="leaf()")
+  li.row-fluid
+    a(ng-href="{{leafURL('cheater')}}") Cheat-Sheet
+    div(ng-switch-when="cheater")
+      include redis/cheater
+  li.row-fluid
+    a(ng-href="{{leafURL('patterns')}}") Patterns
+    div(ng-switch-when="patterns")
+      include redis/patterns
+  li.row-fluid
+    a(ng-href="{{leafURL('apatterns')}}") Anti-Patterns
+    div(ng-switch-when="apatterns")
+      include redis/apatterns
