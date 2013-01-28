@@ -1,6 +1,8 @@
 var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
+  http = require('http'),
+  path = require('path'),
   streamer = require('./routes/streamer'),
   redis = require('redis');
 
@@ -39,7 +41,7 @@ app.get('/api/:action', api.action);
 app.get('/api/:action/:data', api.action);
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+app.get('*/', routes.index);
 
 // Start server
 
