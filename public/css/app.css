@@ -1,9 +1,16 @@
+body {
+  padding-bottom: 55px;
+}
+dl {
+  border: thin dotted #d3d3d3;
+}
 li {
   list-style-type: none;
 }
 #bottomPanel {
   position: fixed;
   bottom: 3px;
+  right: 3px;
 }
 .ng-cloak {
   display: none;

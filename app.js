@@ -8,7 +8,6 @@ var express = require('express'),
 
 var app = express();
 
-
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -30,21 +29,17 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-// Server-Sent-Events
 app.get('/stream', streamer.out);
 app.get('/stream/msg', streamer.msg);
 app.get('/stream/:event_name', streamer.in);
 
-// JSON API
 app.get('/api', api.action);
 app.get('/api/:action', api.action);
 app.get('/api/:action/:data', api.action);
 
-// redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
