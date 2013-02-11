@@ -1,14 +1,18 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "fingerskier.net",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.0.6",
+    "express": "*",
     "jade": "*",
     "stylus": "*",
     "redis": "*"
-  }
+  },
+  "engines": {
+    "node": "*"
+  },
+  "subdomain": "fingerskier",
+  "version": "0.1.0"
 }

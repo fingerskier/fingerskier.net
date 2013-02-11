@@ -1,10 +1,10 @@
-var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path'),
-  streamer = require('./routes/streamer'),
-  redis = require('redis');
+var express = require('express')
+,  routes = require('./routes')
+,  api = require('./routes/api')
+,  http = require('http')
+,  path = require('path')
+,  streamer = require('./routes/streamer');
+// ,  redis = require('redis');
 
 var app = express();
 

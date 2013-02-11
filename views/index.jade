@@ -10,9 +10,11 @@ block body
       li(ng-class="activeAction('glean')")
         a(href='glean') gleanings
       li(ng-class="activeAction('blog')")
-        a(href='blog') circumlocutive musings
+        a(href='blog') musings
       li(ng-class="activeAction('stash')")
         a(href='stash') code stash
+      li(ng-class="activeAction('calc')")
+        a(href='calc') calculator
       li(ng-class="activeAction('cv')")
         a(href='cv') C.V.
 
@@ -23,6 +25,8 @@ block body
         include blog
       li(ng-switch-when='stash')
         include stash
+      li(ng-switch-when='calc')
+        include calc
       li(ng-switch-when='cv')
         include cv
 

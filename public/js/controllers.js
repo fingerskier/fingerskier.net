@@ -57,6 +57,17 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
   });
 }
 
-function MyCtrl1() {}
-
-function MyCtrl2() {}
+function CalcCtrl($log, $scope) {
+  $scope.formulae = [{
+    title: 'Maximum ROP',
+    val: 0,
+    vars: {
+      mudWeightDiff: {name:'Mud-Wt In/Out Diff.', val:1},
+      GPM: {name:'GPM', val:500},
+      holeDiameter: {name:'Hole Diameter', val:10}
+    },
+    calc: function() {
+      this.val = (67 * parseFloat(this.vars.mudWeightDiff.val) * parseFloat(this.vars.GPM.val)) / (this.vars.holeDiameter.val * this.vars.holeDiameter.val);
+    }
+  }];
+};
