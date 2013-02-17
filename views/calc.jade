@@ -3,7 +3,7 @@ div(ng-controller="CalcCtrl")
     button.btn.btn-danger(type="button", ng-click="f.calc()", data-toggle="collapse", data-target="#calcAccordion{{$index}}")
       |{{f.title}}
     div.collapse.in.collapsed(id="calcAccordion{{$index}}")
-      |Result: {{f.val|number:1}}
+      |Result: {{f.val|number:f.precision}}
       label(ng-repeat="var in f.vars")
         span{{var.name}}
         input(ng-model="var.val", ng-change="f.calc()")

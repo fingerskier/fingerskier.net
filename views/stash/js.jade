@@ -1,1 +1,11 @@
-|stash of js stuff
+ul.inline.nav.nav-pills
+  li(ng-class="activeLeaf('vanilla')")
+    a(ng-href="{{leafURL('vanilla')}}") Vanilla
+  li(ng-class="activeLeaf('angular')")
+    a(ng-href="{{leafURL('angular')}}") AngularJS
+
+div(ng-switch="leaf")
+  div(ng-switch-when="vanilla")
+    include js/vanilla
+  div(ng-switch-when="angular")
+    include js/angular

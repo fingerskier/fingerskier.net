@@ -2,8 +2,8 @@ var express = require('express')
 ,  routes = require('./routes')
 ,  api = require('./routes/api')
 ,  http = require('http')
-,  path = require('path')
-,  streamer = require('./routes/streamer');
+,  path = require('path');
+// ,  streamer = require('./routes/streamer');
 // ,  redis = require('redis');
 
 var app = express();
@@ -32,9 +32,9 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-app.get('/stream', streamer.out);
-app.get('/stream/msg', streamer.msg);
-app.get('/stream/:event_name', streamer.in);
+// app.get('/stream', streamer.out);
+// app.get('/stream/msg', streamer.msg);
+// app.get('/stream/:event_name', streamer.in);
 
 app.get('/api', api.action);
 app.get('/api/:action', api.action);

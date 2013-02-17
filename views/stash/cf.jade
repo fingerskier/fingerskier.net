@@ -1,1 +1,68 @@
-|stash of CF stuff
+|Application.cfc:
+ul
+  li this.applicationTimeout = createTimeSpan(0, 1, 0, 0);
+  li this.clientManagement = false;
+  li this.clientStorage = "registry"; //cookie||registry||datasource
+  li this.customTagPaths = "";
+  li this.datasource = "";
+  li this.debugipaddress = "";
+  li this.enablerobustexception = false;
+  li this.googleMapKey = "";
+  li this.loginStorage = "cookie"; //cookie||session
+  li this.mappings = {};
+  li this.name = "foo";
+  li this.ormenabled = false;
+  li this.ormsettings = {};
+  li this.scriptProtect = false;
+  li this.secureJSON = false;
+  li this.secureJSONPrefix = "";
+  li this.serverSideFormValidation = true;
+  li this.sessionManagement = true;
+  li this.sessionTimeout = createTimeSpan(0, 0, 30, 0);
+  li this.setClientCookies = true;
+  li this.setDomainCookies = false;
+  li this.smtpServersettings = {};
+  li this.timeout = 30; // seconds
+  li this.welcomeFileList = "";
+  li
+  li public void function onApplicationEnd(struct ApplicationScope=structNew()) {
+  li   return;
+  li }
+  li
+  li public boolean function onApplicationStart() {
+  li   return true;
+  li }
+  li
+  li public void function onCFCRequest(required string cfcname, required string method, required string args) {
+  li   return;
+  li }
+  li
+  li public void function onError(required any Exception, required string EventName) {
+  li   return;
+  li }
+  li
+  li public boolean function onMissingTemplate(required string TargetPage) {
+  li   return true;
+  li }
+  li
+  li public void function onRequest(required string TargetPage) {
+  li   return;
+  li }
+  li
+  li
+  li public void function onRequestEnd() {
+  li   return;
+  li }
+  li
+  li public boolean function onRequestStart(required string TargetPage) {
+  li   return true;
+  li }
+  li
+  li
+  li public void function onSessionEnd(required struct SessionScope, struct ApplicationScope=structNew()) {
+  li   return;
+  li }
+  li
+  li public void function onSessionStart() {
+  li   return;
+  li }

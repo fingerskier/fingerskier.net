@@ -3,32 +3,30 @@ extends layout
 block body
   div(ng-controller='AppCtrl')
     div(ng-mouseleave="titler=0", ng-mouseover="titler=1")
-      h2 fingerskier
+      h2 fingerskier.net
         a(href="/", ng-show="titler") ^
 
     ul.nav.nav-tabs
-      li(ng-class="activeAction('glean')")
-        a(href='glean') gleanings
       li(ng-class="activeAction('blog')")
         a(href='blog') musings
       li(ng-class="activeAction('stash')")
         a(href='stash') code stash
       li(ng-class="activeAction('calc')")
         a(href='calc') calculator
-      li(ng-class="activeAction('cv')")
-        a(href='cv') C.V.
+      li(ng-class="activeAction('CV')")
+        a(href='CV') C.V.
 
-    ul(ng-cloak, ng-switch='root()')
-      li(ng-switch-when='glean')
-        include glean
+    ul(ng-cloak, ng-switch='root')
+      li(ng-switch-default)
+        include main
       li(ng-switch-when='blog')
         include blog
       li(ng-switch-when='stash')
         include stash
       li(ng-switch-when='calc')
         include calc
-      li(ng-switch-when='cv')
-        include cv
+      li(ng-switch-when='CV')
+        include CV
 
     pre#bottomPanel fingerskier v1.0
 

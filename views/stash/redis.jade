@@ -1,13 +1,15 @@
-ul(ng-switch="leaf()")
-  li.row-fluid
+ul.inline.nav.nav-pills
+  li(ng-class="activeLeaf('cheater')")
     a(ng-href="{{leafURL('cheater')}}") Cheat-Sheet
-    div(ng-switch-when="cheater")
-      include redis/cheater
-  li.row-fluid
+  li(ng-class="activeLeaf('patterns')")
     a(ng-href="{{leafURL('patterns')}}") Patterns
-    div(ng-switch-when="patterns")
-      include redis/patterns
-  li.row-fluid
+  li(ng-class="activeLeaf('apatterns')")
     a(ng-href="{{leafURL('apatterns')}}") Anti-Patterns
-    div(ng-switch-when="apatterns")
-      include redis/apatterns
+
+div(ng-switch="leaf")
+  div(ng-switch-when="cheater")
+    include redis/cheater
+  div(ng-switch-when="patterns")
+    include redis/patterns
+  div(ng-switch-when="apatterns")
+    include redis/apatterns
