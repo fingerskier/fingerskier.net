@@ -1,7 +1,10 @@
-function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
+function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream, $timeout) {
   $scope.action = [];
   $scope.flarn = [];
   $scope.msgs = [];
+
+  var sussman = "switching elements, which are modeled by quantum mechanics described by differential equations whose behavior is captured by numerical approximations represented in computer programs executing on computers composed of ";
+  $scope.sussArr = sussman.split('');
 
   $scope.activeAction = function(fav) {
     if ($scope.root == fav) return 'active'
@@ -46,6 +49,15 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream) {
   //   $scope.flarn.push(reply.data);
   //   $scope.$apply();
   // });
+
+  setInterval(function() {
+    $scope.$apply(function() {
+      $scope.sussArr.push($scope.sussArr[0]);
+      $scope.sussArr.splice(0,1);
+
+      $scope.sussman = $scope.sussArr.slice(0,100).join('');
+    });
+  }, 100);
 }
 
 function CalcCtrl($log, $scope) {

@@ -10,9 +10,13 @@
     "stylus": "*",
     "redis": "*"
   },
+  "domains": [
+    "fingerskier.com",
+    "fingerskier.net"
+  ],
   "engines": {
     "node": "*"
   },
   "subdomain": "fingerskier",
-  "version": "0.1.0-4"
+  "version": "0.1.0-7"
 }

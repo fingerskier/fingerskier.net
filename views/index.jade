@@ -3,12 +3,14 @@ extends layout
 block body
   div(ng-controller='AppCtrl')
     div(ng-mouseleave="titler=0", ng-mouseover="titler=1")
-      h2 fingerskier.net
+      h2 fingerskier
         a(href="/", ng-show="titler") ^
+      h6.ng-cloak.text-info
+        abbr(title="Gerald Sussman"){{sussman}}
 
     ul.nav.nav-tabs
-      li(ng-class="activeAction('blog')")
-        a(href='blog') musings
+      li(ng-class="activeAction('muse')")
+        a(href='muse') musings
       li(ng-class="activeAction('stash')")
         a(href='stash') code stash
       li(ng-class="activeAction('calc')")
@@ -19,8 +21,8 @@ block body
     ul(ng-cloak, ng-switch='root')
       li(ng-switch-default)
         include main
-      li(ng-switch-when='blog')
-        include blog
+      li(ng-switch-when='muse')
+        include muse
       li(ng-switch-when='stash')
         include stash
       li(ng-switch-when='calc')
