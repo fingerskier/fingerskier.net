@@ -11,7 +11,9 @@
     "redis": "*"
   },
   "domains": [
+    "www.fingerskier.com",
     "fingerskier.com",
+    "www.fingerskier.net",
     "fingerskier.net"
   ],
   "engines": {
