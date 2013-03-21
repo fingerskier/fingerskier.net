@@ -1,33 +1,28 @@
 'use strict';
 
 angular.module('app.services', [])
-.service('Stream', function($http, $log, $window) {
-  $log.info('new stream setup');
-
-  function closeHandler() {
-    $log.warn('stream closed');
-  }
-
-  function openHandler() {
-    $log.info('stream opened');
-  }
-
+.factory('socket', function ($log, $rootScope) {
+  var socket = io.connect('http://localhost:3000');
   return {
-    init: function(handler) {
-      var source = new EventSource('/stream');
-
-      $log.info('stream init');
-
-      source.addEventListener('message', handler, false);
-      source.addEventListener('open', openHandler, false);
-      source.addEventListener('close', closeHandler, false);
+    on: function (eventName, callback) {
+      $log.info(eventName, callback);
+      socket.on(eventName, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
     },
-    initMsg: function(handler) {
-      var source = new EventSource('/stream/msg');
-
-      $log.info('stream init');
-
-      source.addEventListener('message', handler, false);
+    emit: function (eventName, data, callback) {
+      $log.info(eventName, data, callback);
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      })
     }
-  }
+  };
 });

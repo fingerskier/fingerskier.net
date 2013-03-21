@@ -39,17 +39,6 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream, $
     $scope.leaf = $routeParams.leaf;
   });
 
-  // Stream.initMsg(function(reply) {
-  //   $scope.msgs.push(reply);
-  // });
-
-  // Stream.init(function(reply) {
-  //   $log.info('from Stream: ');
-  //   $log.info(reply.data);
-  //   $scope.flarn.push(reply.data);
-  //   $scope.$apply();
-  // });
-
   setInterval(function() {
     $scope.$apply(function() {
       $scope.sussArr.push($scope.sussArr[0]);
@@ -57,7 +46,7 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream, $
 
       $scope.sussman = $scope.sussArr.slice(0,100).join('');
     });
-  }, 100);
+  }, 150);
 }
 
 function CalcCtrl($log, $scope) {

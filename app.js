@@ -7,6 +7,7 @@ var express = require('express')
 // ,  redis = require('redis');
 
 var app = express();
+var io = require('socket.io').listen(server);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -29,12 +30,10 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+io.sockets.on('connection', socket);
+
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
-
-// app.get('/stream', streamer.out);
-// app.get('/stream/msg', streamer.msg);
-// app.get('/stream/:event_name', streamer.in);
 
 app.get('/api', api.action);
 app.get('/api/:action', api.action);

@@ -7,6 +7,9 @@ dl {
 li {
   list-style-type: none;
 }
+ul > li {
+  margin-left: 10px;
+}
 #bottomPanel {
   position: fixed;
   bottom: 3px;
