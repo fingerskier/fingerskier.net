@@ -3,9 +3,13 @@ ul.inline.nav.nav-pills
     a(ng-href="{{leafURL('vanilla')}}") Vanilla
   li(ng-class="activeLeaf('angular')")
     a(ng-href="{{leafURL('angular')}}") AngularJS
+  li(ng-class="activeLeaf('node')")
+    a(ng-href="{{leafURL('node')}}") Node.js
 
 div(ng-switch="leaf")
   div(ng-switch-when="vanilla")
     include js/vanilla
   div(ng-switch-when="angular")
     include js/angular
+  div(ng-switch-when="node")
+    include js/node

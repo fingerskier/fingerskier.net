@@ -1,4 +1,4 @@
-function AppCtrl($http, $location, $log, $route, $routeParams, $scope, Stream, $timeout) {
+function AppCtrl($http, $location, $log, $route, $routeParams, $scope, $timeout) {
   $scope.action = [];
   $scope.flarn = [];
   $scope.msgs = [];

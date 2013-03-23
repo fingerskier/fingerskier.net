@@ -1,13 +1,14 @@
 var express = require('express')
-,  routes = require('./routes')
-,  api = require('./routes/api')
-,  http = require('http')
-,  path = require('path');
+,   routes = require('./routes')
+,   api = require('./routes/api')
+,   http = require('http')
+,   path = require('path')
+,   socket = require('./routes/socket');
 // ,  streamer = require('./routes/streamer');
 // ,  redis = require('redis');
 
 var app = express();
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(app);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);

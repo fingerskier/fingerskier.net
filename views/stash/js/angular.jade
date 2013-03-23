@@ -1,4 +1,18 @@
 ul
+  li Controllers
+    ul
+      li
+        pre
+          |// a controller segment for the Server-Sent-Events service
+          | Stream.initMsg(function(reply) {
+          |   $scope.msgs.push(reply);
+          | });
+          | Stream.init(function(reply) {
+          |   $log.info('from Stream: ');
+          |   $log.info(reply.data);
+          |   $scope.flarn.push(reply.data);
+          |   $scope.$apply();
+          | });
   li Directives
     ul
       li
@@ -17,4 +31,31 @@ ul
           |    link: link,
           |    restrict: "A"
           |  };
+          |});
+  li Services
+    ul
+      li
+        pre
+          |.service('Stream', function($http, $log, $window) {
+          |  $log.info('new stream setup');
+          |  function closeHandler() {
+          |    $log.warn('stream closed');
+          |  }
+          |  function openHandler() {
+          |    $log.info('stream opened');
+          |  }
+          |  return {
+          |    init: function(handler) {
+          |      var source = new EventSource('/stream');
+          |      $log.info('stream init');
+          |      source.addEventListener('message', handler, false);
+          |      source.addEventListener('open', openHandler, false);
+          |      source.addEventListener('close', closeHandler, false);
+          |    },
+          |    initMsg: function(handler) {
+          |      var source = new EventSource('/stream/msg');
+          |      $log.info('stream init');
+          |      source.addEventListener('message', handler, false);
+          |    }
+          |  }
           |});
