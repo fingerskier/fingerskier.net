@@ -4,7 +4,7 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, $timeout)
   $scope.msgs = [];
 
   var sussman = "switching elements, which are modeled by quantum mechanics described by differential equations whose behavior is captured by numerical approximations represented in computer programs executing on computers composed of ";
-  $scope.sussArr = sussman.split('');
+  $scope.sussArr = sussman.split(' ');
 
   $scope.activeAction = function(fav) {
     if ($scope.root == fav) return 'active'
@@ -44,9 +44,9 @@ function AppCtrl($http, $location, $log, $route, $routeParams, $scope, $timeout)
       $scope.sussArr.push($scope.sussArr[0]);
       $scope.sussArr.splice(0,1);
 
-      $scope.sussman = $scope.sussArr.slice(0,100).join('');
+      $scope.sussman = $scope.sussArr.join(' ');
     });
-  }, 150);
+  }, 7000);
 }
 
 function CalcCtrl($log, $scope) {
@@ -122,7 +122,8 @@ function ScribCtrl($log, $scope, scribble) {
   }
 
   $scope.backColor = function(color) {
-    return 'background-color: #' + color;
+    $log.info('background-color: #' + color);
+    return {'background-color': '#'+color};
   }
 
   $scope.drawLine = function() {

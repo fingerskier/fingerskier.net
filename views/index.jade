@@ -5,7 +5,7 @@ block body
     div(ng-mouseleave="titler=0", ng-mouseover="titler=1")
       h2 fingerskier
         a(href="/", ng-show="titler") ^
-      h6.ng-cloak.text-info
+      h6.ng-cloak.text-info(align="center")
         abbr(title="Gerald Sussman"){{sussman}}
 
     ul.nav.nav-tabs
@@ -37,13 +37,13 @@ block body
     pre#bottomPanel fingerskier v1.0
 
   script(src='lib/firebase/firebase.js')
-  script(src='lib/firebase/angularfire.js')
   script(src='lib/angular/angular.min.js')
   script(src='lib/angular/angular-bootstrap.min.js')
   script(src='lib/angular/angular-bootstrap-prettify.min.js')
   script(src='lib/angular/angular-loader.min.js')
   script(src='lib/angular/angular-resource.min.js')
   script(src='lib/angular/angular-sanitize.min.js')
+  script(src='lib/firebase/angularfire.js')
   script(src='lib/jquery/js/jquery.min.js')
   script(src='lib/jquery/js/jquery-ui.min.js')
   script(src='lib/angular-ui/angular-ui.min.js')
