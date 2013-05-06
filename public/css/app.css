@@ -15,6 +15,18 @@ ul > li {
   bottom: 3px;
   right: 3px;
 }
+#colorList {
+  border: thick solid #00f;
+}
+#scribbleCanvas {
+  border: thick dotted #800080;
+}
+.colorBox {
+  border: thin solid #000;
+  float: left;
+  height: 33px;
+  width: 33px;
+}
 .ng-cloak {
   display: none;
 }

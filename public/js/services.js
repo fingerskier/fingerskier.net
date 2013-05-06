@@ -25,4 +25,9 @@ angular.module('app.services', [])
       })
     }
   };
-});
+})
+.factory('scribble', function($log) {
+  var dataRef = new Firebase('https://fingerskier.firebaseio.com/scribbler');
+  
+})
+;

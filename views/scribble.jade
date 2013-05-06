@@ -1,0 +1,5 @@
+div(ng-controller="ScribCtrl")
+	canvas#scribbleCanvas(ng-mousedown="mousedown=1", ng-mouseout="unmouse()", ng-mousemove="drawLine()", ng-mousedown="drawLine()")
+	div#colorList
+		div.colorBox(ng-repeat="color in colors", ng-style="backColor(color)", ng-click="selectColor(color)")
+	{{colors}}

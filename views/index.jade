@@ -15,6 +15,8 @@ block body
         a(href='stash') code stash
       li(ng-class="activeAction('calc')")
         a(href='calc') calculator
+      li(ng-class="activeAction('scribble')")
+        a(href='scribble') scribbler
       li(ng-class="activeAction('CV')")
         a(href='CV') C.V.
 
@@ -27,11 +29,15 @@ block body
         include stash
       li(ng-switch-when='calc')
         include calc
+      li(ng-switch-when='scribble')
+        include scribble
       li(ng-switch-when='CV')
         include CV
 
     pre#bottomPanel fingerskier v1.0
 
+  script(src='lib/firebase/firebase.js')
+  script(src='lib/firebase/angularfire.js')
   script(src='lib/angular/angular.min.js')
   script(src='lib/angular/angular-bootstrap.min.js')
   script(src='lib/angular/angular-bootstrap-prettify.min.js')

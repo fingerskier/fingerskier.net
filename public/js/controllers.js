@@ -102,4 +102,78 @@ function CalcCtrl($log, $scope) {
       this.val = term1 * Math.acos(term2 + term3);
     }
   }];
-};
+}
+
+function ScribCtrl($log, $scope, scribble) {
+  // need to replace this with a service
+  var dataRef = new Firebase('https://fingerskier.firebaseio.com/scribbler');
+
+  $scope.colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff"];
+  $scope.currentColor = "000";
+  $scope.pixSize = 8;
+  $scope.lastPoint = null;
+  $scope.mouseDown = 0;
+  $scope.canvas = $('#scribbleCanvas');
+
+  var myContext = $scope.canvas.getContext ? $scope.canvas.getContext('2d') : null;
+  if (myContext == null) {
+    alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+    return;
+  }
+
+  $scope.backColor = function(color) {
+    return 'background-color: #' + color;
+  }
+
+  $scope.drawLine = function() {
+    if (! $scope.mouseDown) return;
+
+    // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
+    var offset = $scope.canvas.offset();
+    var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1)
+    ,   y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+    var x0 = (lastPoint == null) ? x1 : lastPoint[0];
+    var y0 = (lastPoint == null) ? y1 : lastPoint[1];
+    var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+    var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
+    while (true) {
+      //write the pixel into Firebase, or if we are drawing white, remove the pixel
+      dataRef.child(x0 + ":" + y0).set(currentColor === "fff" ? null : currentColor);
+
+      if (x0 == x1 && y0 == y1) break;
+      var e2 = 2 * err;
+      if (e2 > -dy) {
+        err = err - dy;
+        x0 = x0 + sx;
+      }
+      if (e2 < dx) {
+        err = err + dx;
+        y0 = y0 + sy;
+      }
+    }
+    lastPoint = [x1, y1];
+  }
+
+  $scope.selectColor = function(color) {
+    $scope.currentColor = color;
+  }
+
+  $scope.unmouse = function() {
+    $scope.mousedown = 0;
+    $scope.lastPoint = null;
+  }
+
+  dataRef.on('child_added', drawPixel);
+  dataRef.on('child_changed', drawPixel);
+  dataRef.on('child_removed', clearPixel);
+
+  var drawPixel = function(snapshot) {
+    var coords = snapshot.name().split(":");
+    myContext.fillStyle = "#" + snapshot.val();
+    myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+  }
+  var clearPixel = function(snapshot) {
+    var coords = snapshot.name().split(":");
+    myContext.clearRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
+  }
+}
