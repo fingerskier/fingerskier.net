@@ -1,0 +1,10 @@
+div(ng-controller="Chat")
+  div
+    label Your name:
+      input(type="text", ng-model="username")
+  div#messagesDiv(auto-scroll="messages")
+    div(ng-repeat="message in messages")
+      em{{message.from}}: /em{{message.content}}
+  form(ng-submit="addMessage()")
+    input(type="text", ng-model="message", placeholder="Message...")
+    input(type="submit", id="submit", value="Send", style="font-size:24px;")

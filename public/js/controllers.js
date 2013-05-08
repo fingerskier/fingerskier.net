@@ -1,3 +1,5 @@
+'use strict';
+
 function AppCtrl($http, $location, $log, $route, $routeParams, $scope, $timeout) {
   $scope.action = [];
   $scope.flarn = [];
@@ -177,4 +179,18 @@ function ScribCtrl($log, $scope, scribble) {
     var coords = snapshot.name().split(":");
     myContext.clearRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
   }
+}
+
+function Chat($scope, $timeout, angularFire, $log) {
+  var url = 'https://fingerskier.firebaseio.com/chat';
+
+  var promise = angularFire(url, $scope, 'messages', []);
+  $scope.username = 'Guest' + Math.floor(Math.random()*101);
+
+  promise.then(function() {
+    $scope.addMessage = function() {
+      $scope.messages.add({from: $scope.username, content: $scope.message});
+      $scope.message = "";
+    }
+  });
 }

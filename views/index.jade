@@ -15,8 +15,8 @@ block body
         a(href='stash') code stash
       li(ng-class="activeAction('calc')")
         a(href='calc') calculator
-      li(ng-class="activeAction('scribble')")
-        a(href='scribble') scribbler
+      li(ng-class="activeAction('chat')")
+        a(href='chat') talker
       li(ng-class="activeAction('CV')")
         a(href='CV') C.V.
 
@@ -29,8 +29,8 @@ block body
         include stash
       li(ng-switch-when='calc')
         include calc
-      li(ng-switch-when='scribble')
-        include scribble
+      li(ng-switch-when='chat')
+        include chat
       li(ng-switch-when='CV')
         include CV
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['app.filters', 'app.services', 'app.directives', 'ui'])
+angular.module('app', ['app.filters', 'app.services', 'app.directives', 'firebase', 'ui'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/:root')
